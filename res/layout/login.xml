@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/user"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/pass"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:singleLine="true" />
+
+        <CheckBox
+            android:id="@+id/checkPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Show pass"
+            android:textColor="@color/black" />
+        <CheckBox
+            android:id="@+id/savePass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Save Pass"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/bttLogin"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button_3d"
+                android:text="Đăng nhập"
+                android:layout_marginRight="5dp" />
+
+            <Button
+                android:layout_marginLeft="5dp"
+                android:layout_width="0dp"
+                android:background="@drawable/button_3d"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="Register" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
