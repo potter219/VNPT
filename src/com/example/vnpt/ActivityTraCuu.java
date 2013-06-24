@@ -9,10 +9,6 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import com.vnpt.model.LoaiDichVu;
-import com.vnpt.model.NghiepVu;
-import com.vnpt.model.Util;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -29,6 +25,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.vnpt.model.LoaiDichVu;
+import com.vnpt.model.NghiepVu;
+import com.vnpt.model.Util;
 
 public class ActivityTraCuu extends Activity {
 	ProgressDialog progressDialog;

@@ -4,20 +4,14 @@ import java.util.List;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
-
-import com.example.vnpt.ActivityLogin;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.Keyboard.Key;
-import android.os.AsyncTask;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -30,6 +24,8 @@ public class Util {
 	public static List<String> listHeThong;
 	ProgressDialog progressDialog;
 	public static boolean flag= false;
+	
+	//Show thông báo
 	public static void showAlert(Context context,String messeage){
 		AlertDialog.Builder alert = new AlertDialog.Builder(
 				context);
@@ -40,6 +36,7 @@ public class Util {
 		
 		
 	}
+	//hàm này để khi bấm nút back, hỏi có thoát không.
 	public static void exit(Context context) {
 		AlertDialog.Builder alert = new AlertDialog.Builder(context);
 		alert.setTitle("Thông báo!");
@@ -56,7 +53,7 @@ public class Util {
 	}
 
 
-
+	//gọi webservice
 	public static Object CallWebservice(String WSDL, final String METHOD_NAME,
 			String SOAP_ACTION, String NAMESPACE, String[] input, String[] para)
 			throws Exception {
@@ -76,12 +73,10 @@ public class Util {
 			ht.call(SOAP_ACTION, envelope);
 			Object object = envelope.getResponse();
 			return object;
-
 		} catch (Exception e) {
 			return null;
 			// TODO: handle exception
 		}
-
 			}
 
 	public static void hideKeyBoard(Context context, View view) {

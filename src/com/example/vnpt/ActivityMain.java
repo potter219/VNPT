@@ -8,20 +8,19 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-import com.vnpt.model.LoaiDichVu;
-import com.vnpt.model.NghiepVu;
-import com.vnpt.model.Util;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
+
+import com.vnpt.model.LoaiDichVu;
+import com.vnpt.model.NghiepVu;
+import com.vnpt.model.Util;
 
 public class ActivityMain extends Activity {
 	String eros;
