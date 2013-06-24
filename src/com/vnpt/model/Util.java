@@ -1,4 +1,4 @@
-package com.example.vnpt;
+package com.vnpt.model;
 
 import java.util.List;
 

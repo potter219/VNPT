@@ -8,6 +8,10 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.vnpt.model.LoaiDichVu;
+import com.vnpt.model.NghiepVu;
+import com.vnpt.model.Util;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;

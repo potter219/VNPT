@@ -1,4 +1,4 @@
-package com.example.vnpt;
+package com.vnpt.model;
 
 import android.content.Context;
 import android.content.SharedPreferences;

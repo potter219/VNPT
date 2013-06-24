@@ -1,4 +1,4 @@
-package com.example.vnpt;
+package com.vnpt.model;
 
 public class NghiepVu {
 	private String mMaDichVu;

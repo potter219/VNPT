@@ -8,6 +8,10 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.kxml2.kdom.Element;
 import org.kxml2.kdom.Node;
+
+import com.vnpt.model.PreferenceConnector;
+import com.vnpt.model.Util;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
