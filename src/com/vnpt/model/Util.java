@@ -8,6 +8,8 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.vnpt.ActivityLogin;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -25,8 +27,19 @@ public class Util {
 	public static List<NghiepVu> listNghiepVu;
 	public static List<LoaiDichVu> listLoaiDichVu;
 	public static List<Integer> listQuyenUser;
+	public static List<String> listHeThong;
 	ProgressDialog progressDialog;
 	public static boolean flag= false;
+	public static void showAlert(Context context,String messeage){
+		AlertDialog.Builder alert = new AlertDialog.Builder(
+				context);
+		alert.setTitle("Thông báo!");
+		alert.setMessage(messeage);
+		alert.setPositiveButton("Thoát", null);
+		alert.show();
+		
+		
+	}
 	public static void exit(Context context) {
 		AlertDialog.Builder alert = new AlertDialog.Builder(context);
 		alert.setTitle("Thông báo!");
@@ -49,21 +62,27 @@ public class Util {
 			throws Exception {
 		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 		for (int i = 0; i < para.length; i++) {
-			request.addProperty(input[i], para[i]);
+			request.addProperty(para[i],input[i]);
 
 		}
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 				SoapEnvelope.VER11);
 		envelope.setOutputSoapObject(request);
 		envelope.dotNet = true;
+		try {
+			HttpTransportSE ht = new HttpTransportSE(WSDL, 20000);
+			envelope.bodyOut = request;
+			ht.debug = true;
+			ht.call(SOAP_ACTION, envelope);
+			Object object = envelope.getResponse();
+			return object;
 
-		HttpTransportSE ht = new HttpTransportSE(WSDL, 20000);
-		envelope.bodyOut = request;
-		ht.debug = true;
-		ht.call(SOAP_ACTION, envelope);
-		Object object = envelope.getResponse();
-		return object;
-	}
+		} catch (Exception e) {
+			return null;
+			// TODO: handle exception
+		}
+
+			}
 
 	public static void hideKeyBoard(Context context, View view) {
 		InputMethodManager imm = (InputMethodManager) context

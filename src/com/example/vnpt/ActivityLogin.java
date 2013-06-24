@@ -42,8 +42,7 @@ public class ActivityLogin extends Activity {
 	String PASS;
 	EditText userEditText;
 	EditText passEditText;
-	boolean flag= true;
-	
+	boolean flag = true;
 
 	public static String WSDLGetQuyen = "http://123.16.191.37/thinp/returndata.asmx?WSDL";
 	String METHOD_NAMEGetQuyen = "PhanQuyen";
@@ -86,16 +85,16 @@ public class ActivityLogin extends Activity {
 			envelopeGetQuyen.dotNet = true;
 
 			try {
-				
+
 				// ------------getquyen-----------//
 				HttpTransportSE ht = new HttpTransportSE(WSDLGetQuyen, 20000);
 				envelopeGetQuyen.bodyOut = requestGetQuyen;
 				ht.debug = true;
 				ht.call(SOAP_ACTIONGetQuyen, envelopeGetQuyen);
 				SoapObject obj = (SoapObject) envelopeGetQuyen.getResponse();
-				while (Util.listQuyenUser.size()>0) {
+				while (Util.listQuyenUser.size() > 0) {
 					Util.listQuyenUser.remove(0);
-					
+
 				}
 				int length = obj.getPropertyCount();
 				if (length > 0) {
@@ -106,8 +105,7 @@ public class ActivityLogin extends Activity {
 
 					}
 				}
-				
-				
+
 				// ---Dang nhap----//
 				ht = new HttpTransportSE(WSDL, 20000);
 				envelope.bodyOut = request;
@@ -116,8 +114,6 @@ public class ActivityLogin extends Activity {
 				SoapPrimitive primitive = (SoapPrimitive) envelope
 						.getResponse();
 				// ----------------xong------------------//
-
-				
 
 				return primitive.toString();
 			} catch (Exception e) {
@@ -133,152 +129,65 @@ public class ActivityLogin extends Activity {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			progressDialog.dismiss();
-			System.out.println(result);
-			String [] temp = result.split("\\|");
-			String maKetQua= temp[0];
+			String[] temp = result.split("\\|");
+			String maKetQua = temp[0];
 			final String maOPT = temp[1];
 			if (result.equals("Loi")) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
-				alert.setTitle("Thông báo!");
-				alert.setMessage("Không kết nối được đến hệ thống ");
-				alert.setPositiveButton("OK", null);
-				alert.show();
+				Util.showAlert(ActivityLogin.this, "Không kết nối được đến hệ thống");
 
 			}
 			if (maKetQua.equals("0")) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(ActivityLogin.this);
+				AlertDialog.Builder builder = new AlertDialog.Builder(
+						ActivityLogin.this);
 				builder.setTitle("Nhập mã OTP");
 
 				// Set up the input
 				final EditText input = new EditText(ActivityLogin.this);
-				// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+				// Specify the type of input expected; this, for example, sets
+				// the input as a password, and will mask the text
 				input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
 				builder.setView(input);
 
 				// Set up the buttons
-				builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
-				    @Override
-				    public void onClick(DialogInterface dialog, int which) {
-				        String temp   = input.getText().toString();
-				        if (temp.equals(maOPT)){
-				        	Intent i = new Intent(ActivityLogin.this, ActivityTraCuu.class);
-							startActivity(i);
-				        	
-				        }
-				        else {
-				        	AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
-							alert.setTitle("Thông báo!");
-							alert.setMessage("Kiểm tra lại mã OPT!");
-							alert.setPositiveButton("OK", null);
-							alert.show();
-						}
-				    }
-				});
-				builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-				    @Override
-				    public void onClick(DialogInterface dialog, int which) {
-				        dialog.cancel();
-				    }
-				});
+				builder.setPositiveButton("Xác nhận",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								String temp = input.getText().toString();
+								if (temp.equals(maOPT)) {
+									GetHeThong getHeThong = new GetHeThong();
+									getHeThong.execute();
+
+								} else {
+									Util.showAlert(ActivityLogin.this,
+											"Kiểm tra lại mã OTP");
+								}
+							}
+						});
+				builder.setNegativeButton("Thoát",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.cancel();
+							}
+						});
 
 				builder.show();
-			
-				
-				
+
 			}
 			if (maKetQua.equals("2")) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
-				alert.setTitle("Thông báo!");
-				alert.setMessage("Kiểm tra lại thông tin đăng nhập ");
-				alert.setPositiveButton("OK", null);
-				alert.show();
+				Util.showAlert(ActivityLogin.this,
+						"Kiểm tra lại thông tin đăng nhập");
 
 			}
 			if (maKetQua.equals("1")) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
-				alert.setTitle("Thông báo!");
-				alert.setMessage("Tài khoản của bạn chưa đăng ký số điện thoại xác thực. Liên hệ quản lý hệ thống để đăng ký!");
-				alert.setPositiveButton("OK", null);
-				alert.show();
 
-				
-				
-//				AlertDialog.Builder builder = new AlertDialog.Builder(ActivityLogin.this);
-//				builder.setTitle("Nhập số điện thoại của bạn để nhận mã OPT!");
-//
-//				// Set up the input
-//				final EditText input = new EditText(ActivityLogin.this);
-//				// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-//				input.setInputType(InputType.TYPE_CLASS_NUMBER);
-//				builder.setView(input);
-//
-//				// Set up the buttons
-//				builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
-//				    @Override
-//				    public void onClick(DialogInterface dialog, int which) {
-//				       final String  sdt= input.getText().toString().trim();
-//				       ProgressDialog pr = new ProgressDialog(ActivityLogin.this);
-//						pr.setMessage("Đang xử lý");
-//						pr.setIndeterminate(false);
-//						pr.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//						pr.setCancelable(true);
-//						pr.show();
-//				       Thread thread = new Thread(){
-//							@Override
-//							public void run() {
-//								
-//								try {
-//										
-//										SoapObject request = new SoapObject(NAMESPACE,
-//												"CapNhatSoDiDong");
-//										SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-//												SoapEnvelope.VER11);
-//										request.addProperty("username", USER);
-//										request.addProperty("encryptpassword", PASS);
-//										request.addProperty("sodidong",sdt);
-//										envelope.setOutputSoapObject(request);
-//										envelope.headerOut = new Element[1];
-//										envelope.headerOut[0] = buildAuthHeader();
-//										envelope.dotNet = true;
-//										envelope.setOutputSoapObject(request);
-//										HttpTransportSE ht = new HttpTransportSE(WSDL, 20000);
-//										ht.debug = true;
-//										ht.call("http://tempuri.org/CapNhatSoDiDong", envelope);
-//										envelope.bodyOut = request;
-//										System.out.println(request.toString());
-//										SoapPrimitive primitive = (SoapPrimitive) envelope
-//												.getResponse();
-//
-//
-//									
-//									
-//								} catch (Exception e) {
-//									// TODO: handle exception
-//									System.out.println(e);
-//								}
-//							}
-//							
-//						};
-//						thread.start();
-//						pr.dismiss();
-//						
-//
-//				    }
-//				});
-//				builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//				    @Override
-//				    public void onClick(DialogInterface dialog, int which) {
-//				        dialog.cancel();
-//				    }
-//				});
-//
-//				builder.show();
-//
-//				
-//								
-//				
-		}
-//
+				Util.showAlert(
+						ActivityLogin.this,
+						"Tài khoản của bạn chưa đăng ký số điện thoại xác thực. Liên hệ quản lý hệ thống để đăng ký!");
+			}
 
 		}
 
@@ -302,20 +211,18 @@ public class ActivityLogin extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 		Util.listQuyenUser = new ArrayList<Integer>();
-		
 
 		bttLogin = (Button) findViewById(R.id.bttLogin);
 		userEditText = (EditText) findViewById(R.id.user);
 		passEditText = (EditText) findViewById(R.id.pass);
 		checkPass = (CheckBox) findViewById(R.id.checkPass);
 		try {
-			userEditText.setText(PreferenceConnector.readString(ActivityLogin.this,
-					PreferenceConnector.USER, null));
-			passEditText.setText(PreferenceConnector.readString(ActivityLogin.this,
-					PreferenceConnector.PASS, null));
+			userEditText.setText(PreferenceConnector.readString(
+					ActivityLogin.this, PreferenceConnector.USER, null));
+			passEditText.setText(PreferenceConnector.readString(
+					ActivityLogin.this, PreferenceConnector.PASS, null));
 		} catch (Exception e) {
 			// TODO: handle exceptions
-			System.out.println(e);
 
 		}
 		// Util.enterEdittext(userEditText, passEditText);
@@ -372,12 +279,13 @@ public class ActivityLogin extends Activity {
 
 		USER = userEditText.getText().toString();
 		PASS = passEditText.getText().toString();
-		PreferenceConnector.writeString(ActivityLogin.this, PreferenceConnector.USER,
-				USER);
-		PreferenceConnector.writeString(ActivityLogin.this, PreferenceConnector.PASS,
-				PASS);
+		PreferenceConnector.writeString(ActivityLogin.this,
+				PreferenceConnector.USER, USER);
+		PreferenceConnector.writeString(ActivityLogin.this,
+				PreferenceConnector.PASS, PASS);
 		if (USER.length() == 0 || PASS.length() == 0) {
-			AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
+			AlertDialog.Builder alert = new AlertDialog.Builder(
+					ActivityLogin.this);
 			alert.setTitle("Thông báo!");
 			alert.setMessage("Nhập đủ user và pass ");
 			alert.setPositiveButton("OK", new OnClickListener() {
@@ -396,8 +304,52 @@ public class ActivityLogin extends Activity {
 			we.execute();
 		}
 	}
-	
-	
-	
+
+	class GetHeThong extends AsyncTask<String, String, String> {
+
+		@Override
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			String reString = "";
+			String wdsl = "http://123.16.191.37/thinp/returndata.asmx?WSDL";
+			String method_name = "HeThong";
+			String action = "http://tempuri.org/HeThong";
+			String space = "http://tempuri.org/";
+			String[] para = { "data" };
+			String[] input = { "1" };
+			try {
+				SoapObject soapObject = (SoapObject) Util.CallWebservice(wdsl,
+						method_name, action, space, input, para);
+				int length = soapObject.getPropertyCount();
+				Util.listHeThong = new ArrayList<String>();
+				for (int i = 0; i < length; i++) {
+					SoapPrimitive temp = (SoapPrimitive) soapObject
+							.getProperty(i);
+					Util.listHeThong.add(temp.toString());
+
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
+			}
+			return reString;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			Intent i = new Intent(ActivityLogin.this, ActivityMenu.class);
+			startActivity(i);
+		}
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		}
+
+	}
 
 }
