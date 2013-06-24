@@ -23,7 +23,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class MainActivity extends Activity {
+public class ActivityMain extends Activity {
 	String eros;
 	public static String SOAP_ACTION = "http://tempuri.org/TenLoaiDichVu";
 	public static String METHOD_NAME = "TenLoaiDichVu";
@@ -135,7 +135,7 @@ public class MainActivity extends Activity {
 			// TODO Auto-generated method stub
 			if (Util.listLoaiDichVu == null) {
 				AlertDialog.Builder alert = new AlertDialog.Builder(
-						MainActivity.this);
+						ActivityMain.this);
 				alert.setTitle("Thông báo!");
 				alert.setMessage("Kiểm tra lại đường truyền mạng ");
 				alert.setPositiveButton("OK", new OnClickListener() {
@@ -163,7 +163,7 @@ public class MainActivity extends Activity {
 			}
 
 			else {
-				Intent i = new Intent(MainActivity.this, Login.class);
+				Intent i = new Intent(ActivityMain.this, ActivityLogin.class);
 				progressDialog.dismiss();
 				startActivity(i);
 				finish();
@@ -175,7 +175,7 @@ public class MainActivity extends Activity {
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = new ProgressDialog(MainActivity.this);
+			progressDialog = new ProgressDialog(ActivityMain.this);
 			progressDialog.setMessage("Đang xử lý");
 			progressDialog.setIndeterminate(false);
 			progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

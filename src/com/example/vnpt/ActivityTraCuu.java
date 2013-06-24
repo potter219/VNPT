@@ -30,7 +30,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class MainAction extends Activity {
+public class ActivityTraCuu extends Activity {
 	ProgressDialog progressDialog;
 	public static final String NAMESPACE = "http://tempuri.org/";
 	public static String WSDL = "http://123.16.191.37/thinp/Webservice1.asmx?WSDL";
@@ -53,7 +53,7 @@ public class MainAction extends Activity {
 			for (NghiepVu nghiepVu : lNghiepVus) {
 				temp.add(nghiepVu.getmTenDichVu());
 			}
-			ArrayAdapter arrayAdapter = new ArrayAdapter(MainAction.this,
+			ArrayAdapter arrayAdapter = new ArrayAdapter(ActivityTraCuu.this,
 					android.R.layout.simple_spinner_item, temp.toArray());
 			arrayAdapter
 					.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -177,7 +177,7 @@ public class MainAction extends Activity {
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = new ProgressDialog(MainAction.this);
+			progressDialog = new ProgressDialog(ActivityTraCuu.this);
 			progressDialog.setMessage("Đang xử lý");
 			progressDialog.setIndeterminate(false);
 			progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -190,7 +190,7 @@ public class MainAction extends Activity {
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		AlertDialog.Builder alert = new AlertDialog.Builder(MainAction.this);
+		AlertDialog.Builder alert = new AlertDialog.Builder(ActivityTraCuu.this);
 		alert.setTitle("Thông báo!");
 		alert.setMessage("Bạn có muốn thoát khỏi tài khoản này không?");
 		alert.setNegativeButton("Quay lại",
@@ -250,7 +250,7 @@ public class MainAction extends Activity {
 			listTenLoaiDichVu.add(loaiDichVu.getTenDichVu());
 
 		}
-		ArrayAdapter arrayAdapter = new ArrayAdapter(MainAction.this,
+		ArrayAdapter arrayAdapter = new ArrayAdapter(ActivityTraCuu.this,
 				android.R.layout.simple_spinner_item,
 				listTenLoaiDichVu.toArray());
 		arrayAdapter
@@ -265,7 +265,7 @@ public class MainAction extends Activity {
 				// TODO Auto-generated method stub
 				if (mInputData.getText().toString().length() == 0) {
 					AlertDialog.Builder alert = new AlertDialog.Builder(
-							MainAction.this);
+							ActivityTraCuu.this);
 					alert.setTitle("Thông báo!");
 					alert.setMessage("Chưa nhập " + maThongBao);
 					alert.setPositiveButton("OK", null);

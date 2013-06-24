@@ -30,7 +30,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
-public class Login extends Activity {
+public class ActivityLogin extends Activity {
 	Button bttLogin;
 	CheckBox checkPass;
 	ProgressDialog progressDialog;
@@ -138,7 +138,7 @@ public class Login extends Activity {
 			String maKetQua= temp[0];
 			final String maOPT = temp[1];
 			if (result.equals("Loi")) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(Login.this);
+				AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
 				alert.setTitle("Thông báo!");
 				alert.setMessage("Không kết nối được đến hệ thống ");
 				alert.setPositiveButton("OK", null);
@@ -146,11 +146,11 @@ public class Login extends Activity {
 
 			}
 			if (maKetQua.equals("0")) {
-				AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+				AlertDialog.Builder builder = new AlertDialog.Builder(ActivityLogin.this);
 				builder.setTitle("Nhập mã OTP");
 
 				// Set up the input
-				final EditText input = new EditText(Login.this);
+				final EditText input = new EditText(ActivityLogin.this);
 				// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
 				input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
 				builder.setView(input);
@@ -161,12 +161,12 @@ public class Login extends Activity {
 				    public void onClick(DialogInterface dialog, int which) {
 				        String temp   = input.getText().toString();
 				        if (temp.equals(maOPT)){
-				        	Intent i = new Intent(Login.this, MainAction.class);
+				        	Intent i = new Intent(ActivityLogin.this, ActivityTraCuu.class);
 							startActivity(i);
 				        	
 				        }
 				        else {
-				        	AlertDialog.Builder alert = new AlertDialog.Builder(Login.this);
+				        	AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
 							alert.setTitle("Thông báo!");
 							alert.setMessage("Kiểm tra lại mã OPT!");
 							alert.setPositiveButton("OK", null);
@@ -187,7 +187,7 @@ public class Login extends Activity {
 				
 			}
 			if (maKetQua.equals("2")) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(Login.this);
+				AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
 				alert.setTitle("Thông báo!");
 				alert.setMessage("Kiểm tra lại thông tin đăng nhập ");
 				alert.setPositiveButton("OK", null);
@@ -195,7 +195,7 @@ public class Login extends Activity {
 
 			}
 			if (maKetQua.equals("1")) {
-				AlertDialog.Builder alert = new AlertDialog.Builder(Login.this);
+				AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
 				alert.setTitle("Thông báo!");
 				alert.setMessage("Tài khoản của bạn chưa đăng ký số điện thoại xác thực. Liên hệ quản lý hệ thống để đăng ký!");
 				alert.setPositiveButton("OK", null);
@@ -203,11 +203,11 @@ public class Login extends Activity {
 
 				
 				
-//				AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+//				AlertDialog.Builder builder = new AlertDialog.Builder(ActivityLogin.this);
 //				builder.setTitle("Nhập số điện thoại của bạn để nhận mã OPT!");
 //
 //				// Set up the input
-//				final EditText input = new EditText(Login.this);
+//				final EditText input = new EditText(ActivityLogin.this);
 //				// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
 //				input.setInputType(InputType.TYPE_CLASS_NUMBER);
 //				builder.setView(input);
@@ -217,7 +217,7 @@ public class Login extends Activity {
 //				    @Override
 //				    public void onClick(DialogInterface dialog, int which) {
 //				       final String  sdt= input.getText().toString().trim();
-//				       ProgressDialog pr = new ProgressDialog(Login.this);
+//				       ProgressDialog pr = new ProgressDialog(ActivityLogin.this);
 //						pr.setMessage("Đang xử lý");
 //						pr.setIndeterminate(false);
 //						pr.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -286,7 +286,7 @@ public class Login extends Activity {
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
-			progressDialog = new ProgressDialog(Login.this);
+			progressDialog = new ProgressDialog(ActivityLogin.this);
 			progressDialog.setMessage("Đang xử lý");
 			progressDialog.setIndeterminate(false);
 			progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -309,9 +309,9 @@ public class Login extends Activity {
 		passEditText = (EditText) findViewById(R.id.pass);
 		checkPass = (CheckBox) findViewById(R.id.checkPass);
 		try {
-			userEditText.setText(PreferenceConnector.readString(Login.this,
+			userEditText.setText(PreferenceConnector.readString(ActivityLogin.this,
 					PreferenceConnector.USER, null));
-			passEditText.setText(PreferenceConnector.readString(Login.this,
+			passEditText.setText(PreferenceConnector.readString(ActivityLogin.this,
 					PreferenceConnector.PASS, null));
 		} catch (Exception e) {
 			// TODO: handle exceptions
@@ -365,19 +365,19 @@ public class Login extends Activity {
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		// super.onBackPressed();
-		Util.exit(Login.this);
+		Util.exit(ActivityLogin.this);
 	}
 
 	public void TraCuu() {
 
 		USER = userEditText.getText().toString();
 		PASS = passEditText.getText().toString();
-		PreferenceConnector.writeString(Login.this, PreferenceConnector.USER,
+		PreferenceConnector.writeString(ActivityLogin.this, PreferenceConnector.USER,
 				USER);
-		PreferenceConnector.writeString(Login.this, PreferenceConnector.PASS,
+		PreferenceConnector.writeString(ActivityLogin.this, PreferenceConnector.PASS,
 				PASS);
 		if (USER.length() == 0 || PASS.length() == 0) {
-			AlertDialog.Builder alert = new AlertDialog.Builder(Login.this);
+			AlertDialog.Builder alert = new AlertDialog.Builder(ActivityLogin.this);
 			alert.setTitle("Thông báo!");
 			alert.setMessage("Nhập đủ user và pass ");
 			alert.setPositiveButton("OK", new OnClickListener() {
