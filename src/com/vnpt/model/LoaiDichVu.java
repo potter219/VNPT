@@ -1,4 +1,4 @@
-package com.vnpt.model;
+package src.com.vnpt.model;
 
 public class LoaiDichVu {
 	String tenDichVu;

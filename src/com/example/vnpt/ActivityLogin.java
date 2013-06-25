@@ -27,12 +27,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-
-import com.vnpt.model.PreferenceConnector;
 public class ActivityLogin extends Activity {
-import com.vnpt.model.Util;
 
-public class Login extends Activity {
+
+
 	Button bttLogin;
 	CheckBox checkPass;
 	ProgressDialog progressDialog;
