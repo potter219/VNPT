@@ -20,6 +20,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.view.*;
 
 public class Util {
 	public static List<NghiepVu> listNghiepVu;

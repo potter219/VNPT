@@ -138,6 +138,7 @@ public class MainActivity extends Activity {
 						MainActivity.this);
 				alert.setTitle("Thông báo!");
 				alert.setMessage("Kiểm tra lại đường truyền mạng ");
+			
 				alert.setPositiveButton("OK", new OnClickListener() {
 					
 					@Override

@@ -1,6 +1,7 @@
 package com.example.vnpt;
 
 import java.util.ArrayList;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
@@ -8,9 +9,6 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 import org.kxml2.kdom.Element;
 import org.kxml2.kdom.Node;
-
-import com.vnpt.model.PreferenceConnector;
-import com.vnpt.model.Util;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,6 +27,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+
+import com.vnpt.model.PreferenceConnector;
+import com.vnpt.model.Util;
 
 public class Login extends Activity {
 	Button bttLogin;
