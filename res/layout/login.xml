@@ -17,14 +17,14 @@
             android:id="@+id/user"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="Tên đăng nhập"
             android:singleLine="true" />
 
         <EditText
             android:id="@+id/pass"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="Mật khẩu"
             android:singleLine="true" />
 
         <CheckBox
@@ -32,37 +32,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:text="Show pass"
-            android:textColor="@color/black" />
-        <CheckBox
-            android:id="@+id/savePass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="Save Pass"
+            android:text="Hiện pass"
             android:textColor="@color/black" />
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp" >
 
             <Button
                 android:id="@+id/bttLogin"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/button_3d"
-                android:text="Đăng nhập"
-                android:layout_marginRight="5dp" />
-
-            <Button
-                android:layout_marginLeft="5dp"
-                android:layout_width="0dp"
-                android:background="@drawable/button_3d"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:text="Register" />
+                android:text="Đăng nhập" />
         </LinearLayout>
     </LinearLayout>
 
